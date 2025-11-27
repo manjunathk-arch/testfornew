@@ -1,0 +1,13 @@
+<h2>Todo List</h2>
+
+<ul>
+    {% for todo in todos %}
+        <li>
+            {{ todo.title }} - {% if todo.completed %}Done{% else %}Pending{% endif %}
+        </li>
+    {% empty %}
+        <p>No tasks yet.</p>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'add_todo' %}">Add New Task</a>
