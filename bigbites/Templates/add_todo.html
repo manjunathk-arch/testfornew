@@ -1,9 +1,104 @@
-<h2>Add Todo</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Todo</title>
+    <style>
+        /* Rainbow background animation */
+        @keyframes rainbow {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
 
-<form method="POST">
-    {% csrf_token %}
-    <input type="text" name="title" placeholder="Enter task">
-    <button type="submit">Add</button>
-</form>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1, #84fab0, #8fd3f4);
+            background-size: 600% 600%;
+            animation: rainbow 20s ease infinite;
+        }
 
-<a href="{% url 'home' %}">Back</a>
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 350px;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            border-radius: 12px;
+            border: 2px solid #ff9a9e;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #a18cd1;
+            box-shadow: 0 0 8px #a18cd1;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb);
+            background-size: 200% 200%;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.5s;
+        }
+
+        button:hover {
+            background-position: right center;
+        }
+
+        a {
+            text-align: center;
+            display: block;
+            margin-top: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #ff9a9e;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: #fbc2eb;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Add Todo</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Enter task">
+            <button type="submit">Add</button>
+        </form>
+
+        <a href="{% url 'home' %}">Back</a>
+    </div>
+</body>
+</html>

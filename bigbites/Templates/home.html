@@ -1,13 +1,110 @@
-<h2>Todo List</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        /* Rainbow background animation */
+        @keyframes rainbow {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
 
-<ul>
-    {% for todo in todos %}
-        <li>
-            {{ todo.title }} - {% if todo.completed %}Done{% else %}Pending{% endif %}
-        </li>
-    {% empty %}
-        <p>No tasks yet.</p>
-    {% endfor %}
-</ul>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1, #84fab0, #8fd3f4);
+            background-size: 600% 600%;
+            animation: rainbow 20s ease infinite;
+        }
 
-<a href="{% url 'add_todo' %}">Add New Task</a>
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #ff6f61;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            transition: transform 0.2s, background 0.5s;
+        }
+
+        li:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #fbc2eb, #a18cd1);
+        }
+
+        li.completed {
+            background: linear-gradient(45deg, #84fab0, #8fd3f4);
+            color: #000;
+            text-decoration: line-through;
+        }
+
+        p {
+            text-align: center;
+            color: #ff6f61;
+            font-weight: bold;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            transition: 0.5s;
+        }
+
+        a:hover {
+            background: linear-gradient(45deg, #fbc2eb, #a18cd1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Todo List</h2>
+
+        <ul>
+            {% for todo in todos %}
+                <li class="{% if todo.completed %}completed{% endif %}">
+                    {{ todo.title }} - {% if todo.completed %}Done{% else %}Pending{% endif %}
+                </li>
+            {% empty %}
+                <p>No tasks yet.</p>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'add_todo' %}">Add New Task</a>
+    </div>
+</body>
+</html>
